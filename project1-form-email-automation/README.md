@@ -1,4 +1,4 @@
-![Project Banner](assets/p1banner.png)
+![Project Banner](assets/p1-banner.png)
 
 # Automated Email Notification on Form Submission Using n8n
 ## Project Overview

@@ -6,8 +6,8 @@ a confirmation or notification email automatically without manual intervention. 
 helps reduce manual work, improves response time, and ensures consistent communication 
 with users or internal teams. 
 ## 2. Objective 
-• Automate email notifications on form submission 
-• Learn n8n workflow structure and triggers 
+-  Automate email notifications on form submission 
+- Learn n8n workflow structure and triggers 
 • Integrate n8n with Google Sheets and Gmail 
 • To gain hands-on experience with triggers, data handling, email automation and 
 n8n integration with Gmail and google sheet. 

@@ -1,0 +1,241 @@
+{
+  "name": "Email Automation Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "SK Consultation Form",
+        "formDescription": "Hey there, thanks for connecting SK Consultation, fill the details in below Form with SK for AI service consultation or training.",
+        "formFields": {
+          "values": [
+            {
+              "fieldName": "Name",
+              "fieldLabel": "Name",
+              "placeholder": "Type your name",
+              "requiredField": true
+            },
+            {
+              "fieldName": "Email",
+              "fieldLabel": "Email",
+              "fieldType": "email",
+              "placeholder": "Email",
+              "requiredField": true
+            },
+            {
+              "fieldName": "Services",
+              "fieldLabel": "Service",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Consultation"
+                  },
+                  {
+                    "option": "Training"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": true,
+          "buttonLabel": "Let's AI Know you!"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d4e3a1fb-1c31-4687-a562-3376655b77c0",
+      "name": "On form submission",
+      "webhookId": "bafb545d-ad8c-4eaf-901b-51d05aa4ef5d"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "10RSJKpF3RELVnf-fZTqr1hp0136he1Da0WtdIbiiuPs",
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/10RSJKpF3RELVnf-fZTqr1hp0136he1Da0WtdIbiiuPs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/10RSJKpF3RELVnf-fZTqr1hp0136he1Da0WtdIbiiuPs/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json.Name }}",
+            "Email": "={{ $json.Email }}",
+            "Services": "={{ $json.Services }}",
+            "submittedAt": "={{ $json.submittedAt }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Services",
+              "displayName": "Services",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "submittedAt",
+              "displayName": "submittedAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "formMode",
+              "displayName": "formMode",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        0
+      ],
+      "id": "a20797f6-ea49-455b-88c9-806427335d4f",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "HpTTYYuJoyjulEzr",
+          "name": "Google Sheets account 3"
+        }
+      },
+      "notes": "test"
+    },
+    {
+      "parameters": {
+        "sendTo": "khedekars403@gmail.com",
+        "subject": "Updates on Form submission",
+        "emailType": "text",
+        "message": "=Hey SK Consultation,  \n\nThere is the new lead on the form submission: \nName:  {{ $('On form submission').item.json.Name }}\nEmail: {{ $('On form submission').item.json.Email }}\nService: {{ $('On form submission').item.json.Services }}\nTime:  {{ $('On form submission').item.json.submittedAt }}\nSource: {{ $workflow.id }}\n\nThanks!😊 You are amazing Workflow!!👌",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "60eea481-8f62-4766-8485-692d6345417f",
+      "name": "Send a message",
+      "webhookId": "7d8fdd95-e52a-4194-a5d6-06a7af4e3ca0",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "QPbtJ46VVlQ0WOBP",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Project 1 : \n## Automatic email sent on form submission:",
+        "height": 384,
+        "width": 864
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -208,
+        -144
+      ],
+      "id": "feeae0f2-88a8-4c94-b626-ebf16317e43c",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "7750f571-cbb0-465c-989b-e278aaa81107",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2ae5197e32a661e2eebc4f43edda8bce125183b053bb83b065c8c2c0c50f8d10"
+  },
+  "id": "Kyy4YSHyA88I8RKP",
+  "tags": [
+    {
+      "updatedAt": "2025-12-30T05:01:15.599Z",
+      "createdAt": "2025-12-30T05:01:15.599Z",
+      "id": "smf9NEn2JBCNXgxR",
+      "name": "Automation 1"
+    }
+  ]
+}

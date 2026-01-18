@@ -6,6 +6,9 @@ This project demonstrates how to automate sent email notifications using n8n for
 
 ## Workflow
 Form Submission → Google Sheets → Email Notification
+![Project Banner](https://github.com/Swatikhedekar/AI-agents-and-Workflow-Automation-with-n8n/blob/main/project1-form-email-automation/screenshots/ar1.png?raw=true
+)
+
 ## Tools Used
 -	n8n – Workflow automation tool
 -	n8n Form Trigger Node– To receive form submission data
